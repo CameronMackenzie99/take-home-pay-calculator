@@ -8,7 +8,7 @@ class CalcConfig:
     tax_rates: list
     pa_threshold: int
     base_pa: int
-    # export_dir: str TODO: export results to csv
+    export_dir: str
 
 
 def read_config(config_file: str) -> CalcConfig:
