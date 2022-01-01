@@ -62,11 +62,11 @@ class TaxCalculator(Calc):
             # If top band, then all remaining taxable is in that band
             else:
                 taxable_list.append(to_be_taxed)
+        
         total_tax_due_list = [(segment * rate) for segment, rate in list(zip(taxable_list, self.tax_rates))]
         total_tax_due = sum(total_tax_due_list)
         tax_due = list(zip(total_tax_due_list, self.tax_rates))
         
-        return CalcResult(
-            total_tax_due,
-            tax_due
-        )
+        total_taxable = self.taxable
+        
+        return total_taxable, total_tax_due, tax_due

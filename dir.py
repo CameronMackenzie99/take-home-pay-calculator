@@ -13,4 +13,3 @@ def working_directory(path: str):
         yield
     finally:
         os.chdir(cwd)
-
