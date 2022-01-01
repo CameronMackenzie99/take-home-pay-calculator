@@ -58,7 +58,7 @@ class TaxCalculator(Calc):
                 # if doesn't exceed, all remaining taxable is in that band
                 else:
                     taxable_list.append(to_be_taxed)
-                    break # may not need
+                    to_be_taxed = 0
             # If top band, then all remaining taxable is in that band
             else:
                 taxable_list.append(to_be_taxed)
