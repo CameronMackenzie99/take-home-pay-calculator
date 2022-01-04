@@ -13,24 +13,24 @@ class PersonalAllowanceCalculator():
         defined in the config file."""
         if self.salary > self.pa_threshold:
             self.pa_reduction = (self.salary - self.pa_threshold) / 2
-            if self.salary - (self.pa_reduction / 2) < self.base_pa:
-                self.pa = self.base_pa - self.pa_reduction
+            if (self.pa_reduction * 2) < self.base_pa:
+                self.personal_allowance = self.base_pa - self.pa_reduction
             else:
-                self.pa = 0
+                self.personal_allowance = 0
         else:
-            self.pa = self.base_pa
-        return self.pa
+            self.personal_allowance = self.base_pa
+        return self.personal_allowance
 
 class TaxableIncomeCalculator():
     """Calculates taxable income."""
-    def __init__(self, salary: int, pa: int):
-        self.pa = pa
+    def __init__(self, salary: int, personal_allowance: int):
+        self.personal_allowance = personal_allowance
         self.salary = salary
     def calc(self):
         """Returns the taxable income for a given salary and 
         personal allowance."""
-        if self.salary > self.pa:
-            return self.salary - self.pa
+        if self.salary > self.personal_allowance:
+            return self.salary - self.personal_allowance
         else:
             return 0
 
