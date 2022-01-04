@@ -3,6 +3,8 @@ tests/
 results/
 ok
 *.ok
+.vscode
+Pipfile*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

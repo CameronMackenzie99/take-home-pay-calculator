@@ -1,3 +1,4 @@
+"""Exports results to json file."""
 from datetime import datetime
 import json
 
@@ -9,5 +10,5 @@ def export_result(result: dict, export_dir: str) -> None:
     timestamp = now.strftime("%Y-%m-%d,%H-%M-%S")
     with working_directory(export_dir):
         export_name = f"result_{timestamp}.json"
-        f = open(export_name, "w")
-        json.dump(result, f)
+        file = open(export_name, "w", encoding="utf-8")
+        json.dump(result, file)
