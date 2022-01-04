@@ -9,12 +9,14 @@ def main() -> None:
     Converts object to a dictionary and prints out contents.
     Exports dictionary to a json file in the specified directory.
     """
-    config = read_config("./config.json")
+    config = read_config("src/config.json")
     result = calc_takehome_pay(config)
     display = dataclasses.asdict(result)
+    print("----------------------------------RESULT----------------------------------")
     for i in display:
         print(f"{i}: {display[i]}")
     export_result(display, config.export_dir)
+    print("--------------------------------------------------------------------------")
 
 if __name__ == "__main__":
     main()

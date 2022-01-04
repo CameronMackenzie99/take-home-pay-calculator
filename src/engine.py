@@ -38,7 +38,7 @@ class TaxableIncomeCalculator():
 
 class TaxCalculator:
     """Calculates the tax due on a given gross salary."""
-    def __init__(self, taxable: int, tax_bands: List[int], tax_rates: List[int]):
+    def __init__(self, taxable: int, tax_bands: List[int], tax_rates: List[float]):
         self.taxable = taxable
         self.tax_bands = tax_bands
         self.tax_rates = tax_rates

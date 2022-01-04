@@ -7,7 +7,7 @@ from typing import List
 class CalcConfig:
     """Configuration settings for calculations."""
     tax_bands: List[int]
-    tax_rates: List[int]
+    tax_rates: List[float]
     pa_threshold: int
     base_pa: int
     export_dir: str
