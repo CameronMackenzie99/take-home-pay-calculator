@@ -3,7 +3,7 @@ import unittest
 from decimal import Decimal
 
 from moneyed import Money
-from src import engine
+import engine
 
 
 class TestPersonalAllowanceCalc(unittest.TestCase):
