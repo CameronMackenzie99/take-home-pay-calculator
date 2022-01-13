@@ -1,16 +1,20 @@
 """Defines dataclass for CalcResult for calc method."""
 from dataclasses import dataclass
-from typing import List, Tuple, Optional
+from decimal import Decimal
+from typing import List, Optional, Tuple
+
+from moneyed import Money
+
 
 @dataclass
 class CalcResult:
     """Properties of result of computing take home pay to be displayed to user."""
-    gross_pay: int
-    tax_free_allowance: int
-    total_taxable: int
-    total_tax_due: int
-    tax_due: List[Tuple[int, int]]
-    net_pay: int
-    national_insurance: Optional[int] = None
-    stu_loan_payment: Optional[int] = None
+    gross_pay: Money
+    tax_free_allowance: Money
+    total_taxable: Money
+    total_tax_due: Money
+    tax_due: List[Tuple[Money, Decimal]]
+    net_pay: Money
+    national_insurance: Optional[Money] = None
+    stu_loan_payment: Optional[Money] = None
     

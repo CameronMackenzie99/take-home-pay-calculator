@@ -6,6 +6,7 @@ ok
 .vscode
 Pipfile*
 .pylintrc
+*.dot
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
