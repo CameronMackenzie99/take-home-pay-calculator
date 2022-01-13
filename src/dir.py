@@ -1,5 +1,7 @@
+"""Handles directory change for exports."""
 import os
 from contextlib import contextmanager
+
 
 @contextmanager
 def working_directory(path: str):
