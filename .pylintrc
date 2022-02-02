@@ -1,2 +1,2 @@
 [DEFAULT]
-disable=import-error
+init-hook='import sys; sys.path.append("./backend")'
