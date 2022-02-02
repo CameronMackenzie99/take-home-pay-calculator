@@ -6,7 +6,7 @@ from typing import List
 
 from moneyed import Money
 
-from money import convert_list_to_money, convert_to_money
+from src.money import convert_list_to_money, convert_to_money
 
 
 @dataclass
