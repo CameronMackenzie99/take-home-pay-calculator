@@ -1,20 +1,31 @@
-"""Instantiates FastAPI app, and defines routers."""
+"""Instatiates the FastAPI app and defines endpoint for calculation requests."""
 from fastapi import FastAPI
-
+from fastapi.middleware.cors import CORSMiddleware
 from src.main import main
 from schemas.calculate import CalculationRequest
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+    )
+
 
 @app.get('/')
 async def root():
-    """Returns hello world as a JSON string."""
+    """Test endpoint."""
     return {"message": "Hello World"}
 
 @app.post("/")
-async def send_calculation_result(calculation_request: CalculationRequest):
-    """Uses the received JSON object to calculate the
-    result and sends as a response.
-    """
+async def req(calculation_request: CalculationRequest):
+    """Endpoint for calculation request."""
+    print(calculation_request)
     return main(calculation_request.salary)
