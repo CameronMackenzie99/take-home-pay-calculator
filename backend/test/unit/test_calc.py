@@ -128,5 +128,42 @@ class TestTaxCalc(unittest.TestCase):
 
         self.assertEqual(result.total_tax_due.amount, Decimal("65960"))
 
-if __name__ == '__main__':
+class TestNICalc(unittest.TestCase):
+    """Test calculation of national insurance."""
+    def test_ni_calc_no_ni(self):
+        """Test calculation of national insurance when salary is below lower band
+        i.e no ni is due."""
+        salary = Money(5000, "GBP")
+        ni_bands = [Money(9564, "GBP"), Money(50268, "GBP")]
+        ni_rates = [Decimal("0.12"), Decimal("0.02")]
+        test_calc = engine.NationalInsuranceCalculator(salary, ni_bands, ni_rates)
+
+        result = test_calc.calc()
+
+        self.assertEqual(result.amount, Decimal("0"))
+
+    def test_ni_calc_some_ni(self):
+        """Test calculation of national insurance when salary is in middle band
+        i.e ni is due in lower band."""
+        salary = Money(25000, "GBP")
+        ni_bands = [Money(9564, "GBP"), Money(50268, "GBP")]
+        ni_rates = [Decimal("0.12"), Decimal("0.02")]
+        test_calc = engine.NationalInsuranceCalculator(salary, ni_bands, ni_rates)
+
+        result = test_calc.calc()
+
+        self.assertEqual(result.amount, Decimal("1852.32"))
+
+    def test_ni_calc_top_band_ni(self):
+        """Test calculation of national insurance when salary is in upper band
+        i.e ni is due in all bands."""
+        salary = Money(55000, "GBP")
+        ni_bands = [Money(9564, "GBP"), Money(50268, "GBP")]
+        ni_rates = [Decimal("0.12"), Decimal("0.02")]
+        test_calc = engine.NationalInsuranceCalculator(salary, ni_bands, ni_rates)
+
+        result = test_calc.calc()
+
+        self.assertEqual(result.amount, Decimal("4979.12"))
+if __name__ == '__main__':  # pragma: no cover
     unittest.main()

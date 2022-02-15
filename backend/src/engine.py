@@ -41,7 +41,7 @@ class TaxableIncomeCalculator():
         self.personal_allowance = personal_allowance
         self.salary = salary
 
-    def calc(self):
+    def calc(self) -> Money:
         """Returns the taxable income for a given salary and
         personal allowance."""
         if self.salary > self.personal_allowance:
@@ -101,3 +101,47 @@ class TaxCalculator:
             total_tax_due,
             tax_due
         )
+
+class NationalInsuranceCalculator:
+    """Calculates the national insurance contributions due on a given gross salary."""
+
+    def __init__(self, salary: Money, ni_bands: List[Money], ni_rates: List[Decimal]):
+        self.salary = salary
+        self.ni_bands = ni_bands
+        self.ni_rates = ni_rates
+
+    def calc(self) -> Money:
+        """Returns the National Insurance deductions due on a given gross salary."""
+        ni_deductible_bands:List[Money] = []
+        # Check if no NI is due.
+        if self.salary <= self.ni_bands[0]:
+            return convert_to_money(0)
+        for index, band in enumerate(self.ni_bands):
+            if band != self.ni_bands[-1]:
+                # check if salary falls between current band and the next band
+                if self.salary <= self.ni_bands[index + 1] and self.salary > band:
+                    # append salary portion that is in that band
+                    ni_deductible_bands.append(self.salary - band)
+                # else if salary exceeds next band
+                elif self.salary > band:
+                    # append difference between current and next band
+                    ni_deductible_bands.append(self.ni_bands[index + 1] - band)
+                # else the salary is less than the current band
+                else:
+                    # append value of 0 to that band
+                    ni_deductible_bands.append(convert_to_money(0))
+            # if it is the final band
+            else:
+                # if salary exceeds this band
+                if self.salary > band:
+                    # append salary above the top band
+                    ni_deductible_bands.append(self.salary - band)
+                else:
+                    # append value of 0 to top band
+                    ni_deductible_bands.append(convert_to_money(0))
+
+        # multiply deductible salary in each band by the national insurance rate for that band
+        ni_due_list = [amount * rate for amount, rate in zip(ni_deductible_bands, self.ni_rates)]
+        total_ni_due = sum(ni_due_list)
+        assert isinstance(total_ni_due, Money) # checks that sum is not zero from an empty list
+        return total_ni_due

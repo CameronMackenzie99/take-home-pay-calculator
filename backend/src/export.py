@@ -13,7 +13,7 @@ def export_result_to_dataframe(result) -> pd.DataFrame:
     """
     raw_df = pd.DataFrame([result])
     newcols = raw_df["tax_due"].apply(pd.Series)
-    newcols = newcols.rename(columns=lambda x: "_" +
+    newcols = newcols.rename(columns=lambda x: "p" +
                            str(((newcols.at[0, x])[1]*100)//1) + "_tax_band")
     newcols = newcols.apply(lambda cell: cell[0], axis=0)
     newcols = newcols.drop([1])

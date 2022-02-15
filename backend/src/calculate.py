@@ -14,7 +14,7 @@ class CalcResult:
     total_taxable: Money
     total_tax_due: Money
     tax_due: List[Tuple[Money, Decimal]]
+    national_insurance: Money
     net_pay: Money
-    national_insurance: Optional[Money] = None
     stu_loan_payment: Optional[Money] = None
     
