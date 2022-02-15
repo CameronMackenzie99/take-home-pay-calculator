@@ -92,7 +92,7 @@ fetch("http://127.0.0.1:8000", requestOptions)
 - [ ] Implement other deductions.
 - [x] Create frontend with React to interact with API layer.
 - [x] Dockerise API for deployment on AWS cloud.
-- [ ] Deploy to AWS for usage on portfolio website.
+- [ ] Deploy to AWS for usage on [portfolio website](https://github.com/CameronMackenzie99/portfolio-website).
 - [ ] Implement database for storing tax rates to allow selection of historic tax years.
 
 ## Notes
