@@ -8,12 +8,12 @@ from src.fetch import CalculateTakeHomePay
 from src.money import convert_to_money
 
 
-def main(salary) -> CalculationResponse:
+def main(salary, tax_year) -> CalculationResponse:
     """Calls function to convert the salary to a money object, reads config file
     and uses resulting data to calculate take home pay and call function to export to dataframe.
     """
     input_salary = convert_to_money(salary)
-    config = process_config(read_config("src/config.json"))
+    config = process_config(read_config("src/config.json", tax_year))
     result = CalculateTakeHomePay(input_salary, config).calc_takehome_pay()
     result_df = export_result_to_dataframe(result)
     result_json = dataframe_to_json(result_df)
@@ -21,4 +21,4 @@ def main(salary) -> CalculationResponse:
 
 
 if __name__ == "__main__":
-    main(55000)
+    main(55000, "2021/22")

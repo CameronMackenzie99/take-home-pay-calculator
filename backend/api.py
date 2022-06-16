@@ -28,4 +28,4 @@ async def root():
 async def req(calculation_request: CalculationRequest):
     """Endpoint for calculation request."""
     print(calculation_request)
-    return main(calculation_request.salary)
+    return main(calculation_request.salary, calculation_request.taxYear)

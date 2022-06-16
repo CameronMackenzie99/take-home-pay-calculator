@@ -18,14 +18,13 @@ class CalcConfig:
     ni_rates: List[float]
     pa_threshold: int
     base_pa: int
-    export_dir: str
 
 
-def read_config(config_file: str) -> CalcConfig:
+def read_config(config_file: str, tax_year: str) -> CalcConfig:
     """Reads the .json config file and unpacks the data."""
     with open(config_file, 'r', encoding="utf-8") as file:
         data = json.load(file)
-        return CalcConfig(**data)
+        return CalcConfig(**data[tax_year])
 
 @dataclass
 class CalcMoneyConfig:
@@ -36,7 +35,6 @@ class CalcMoneyConfig:
     ni_rates: List[Decimal]
     pa_threshold: Money
     base_pa: Money
-    export_dir: str
 
 def process_config(calc_config: CalcConfig) -> CalcMoneyConfig:
     """Converts configuration file attributes to Money and decimal objects."""
@@ -46,7 +44,6 @@ def process_config(calc_config: CalcConfig) -> CalcMoneyConfig:
     ni_rates = [Decimal(str(i)) for i in calc_config.ni_rates]
     pa_threshold  =convert_to_money(calc_config.pa_threshold)
     base_pa = convert_to_money(calc_config.base_pa)
-    export_dir = calc_config.export_dir
     return CalcMoneyConfig(
         tax_bands,
         tax_rates,
@@ -54,5 +51,4 @@ def process_config(calc_config: CalcConfig) -> CalcMoneyConfig:
         ni_rates,
         pa_threshold,
         base_pa,
-        export_dir,
         )

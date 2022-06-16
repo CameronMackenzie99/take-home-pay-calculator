@@ -1,9 +1,18 @@
 {
-    "tax_bands": [0, 37700, 150000],
-    "tax_rates": [0.2, 0.4, 0.45],
-    "ni_bands": [9564, 50268],
-    "ni_rates": [0.12, 0.02],
-    "pa_threshold": 100000,
-    "base_pa": 12579,
-    "export_dir": "results"
+    "2021/22": {
+        "tax_bands": [0, 37700, 150000],
+        "tax_rates": [0.2, 0.4, 0.45],
+        "ni_bands": [9564, 50268],
+        "ni_rates": [0.12, 0.02],
+        "pa_threshold": 100000,
+        "base_pa": 12579
+},
+    "2022/23": {
+        "tax_bands": [0, 37700, 150000],
+        "tax_rates": [0.2, 0.4, 0.45],
+        "ni_bands": [9880, 50284],
+        "ni_rates": [0.1325, 0.0325],
+        "pa_threshold": 100000,
+        "base_pa": 12579
+}
 }
