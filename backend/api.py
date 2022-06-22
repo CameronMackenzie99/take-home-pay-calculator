@@ -2,8 +2,8 @@
 import re
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from src.main import main
 from schemas.calculate import CalculationRequest
+from src.main import main
 
 app = FastAPI()
 
@@ -31,8 +31,11 @@ async def req(calculation_request: CalculationRequest):
     print(calculation_request)
     if int(calculation_request.salary) < 0:
         raise HTTPException(status_code=400, detail="Invalid salary, must be a positive value")
-    if not re.match("^(19[5-9]\d|20[0-9]\d|2050)\/([0-9]\d)$", calculation_request.taxYear):
+    if not re.match(r"^(19[5-9]\d|20[0-9]\d|2050)\/([0-9]\d)$",
+     calculation_request.taxYear):
         raise HTTPException(status_code=400, detail="Invalid date format, must be YYYY/YY")
-    if len(calculation_request.taxYear) == 7 and int(calculation_request.taxYear[5:7]) - int(calculation_request.taxYear[2:4]) != 1:
-        raise HTTPException(status_code=400, detail="Invalid date range, must be one year separation e.g. 2022/23")
+    if len(calculation_request.taxYear) == 7 and int(calculation_request.taxYear[5:7]
+    ) - int(calculation_request.taxYear[2:4]) != 1:
+        raise HTTPException(
+            status_code=400, detail="Invalid date range, must be one year separation e.g. 2022/23")
     return main(calculation_request.salary, calculation_request.taxYear)

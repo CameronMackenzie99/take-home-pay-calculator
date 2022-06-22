@@ -46,8 +46,7 @@ class TaxableIncomeCalculator():
         personal allowance."""
         if self.salary > self.personal_allowance:
             return self.salary - self.personal_allowance
-        else:
-            return convert_to_money(0)
+        return convert_to_money(0)
 
 
 @dataclass
