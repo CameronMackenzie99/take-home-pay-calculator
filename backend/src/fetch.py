@@ -6,7 +6,6 @@ from src.calculate import CalcResult
 from src.config import CalcMoneyConfig
 from src.engine import (PersonalAllowanceCalculator, TaxableIncomeCalculator,
                         TaxCalculator, NationalInsuranceCalculator)
-from src.money import convert_to_money
 
 class CalculateTakeHomePay:
     """Composes Calculator classes to calculate take home pay and return a CalcResult."""
