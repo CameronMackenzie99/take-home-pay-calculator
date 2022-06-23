@@ -6,27 +6,6 @@ from src.calculate import CalcResult
 from src.config import CalcMoneyConfig
 from src.engine import (PersonalAllowanceCalculator, TaxableIncomeCalculator,
                         TaxCalculator, NationalInsuranceCalculator)
-from src.money import convert_to_money
-
-
-def check_if_float(value: str):
-    """Return boolean indicating whether a string represents a float."""
-    try:
-        float(value)
-        return True
-    except ValueError:
-        return False
-
-
-def ask_salary() -> Money:
-    """Asks user for their gross yearly salary, and returns the integer value of it."""
-    while True:
-        sal = input("What is your gross yearly salary?: ")
-        if sal.isdigit() or check_if_float(sal):
-            break
-        print("Invalid input, please enter only numbers")
-    return convert_to_money(sal)
-
 
 class CalculateTakeHomePay:
     """Composes Calculator classes to calculate take home pay and return a CalcResult."""
