@@ -87,13 +87,11 @@ fetch("http://127.0.0.1:8000", requestOptions)
 }
 ```
 ## To Do 
-- [ ] Implement error handling through adding a `Service Result` layer which takes the response and checks for success. This will combine error handling for request validation, http exceptions, and app exceptions (e.g. failure to write to database in future implementations.)
 - [x] Implement National Insurance deductions
 - [ ] Implement other deductions.
 - [x] Create frontend with React to interact with API layer.
 - [x] Dockerise API for deployment on AWS cloud.
-- [ ] Deploy to AWS for usage on [portfolio website](https://github.com/CameronMackenzie99/portfolio-website).
-- [ ] Implement database for storing tax rates to allow selection of historic tax years.
+- [x] Deploy to AWS for usage on [portfolio website](https://github.com/CameronMackenzie99/portfolio-website).
 
 ## Notes
 - To run tests and linters with IDE tools, IDE must be configured with tests / linters to run from the `/backend` directory for imports to work correctly, as this is a self-contained module and no relative imports are used as recommended by [PEP 8](https://www.python.org/dev/peps/pep-0008/#imports). 
